@@ -26,13 +26,10 @@ export function SignUp(){
         .then((res) => {
             const token = res.data.user.token
             sessionStorage.setItem('token', token)
-            console.log(res.data.message)
         })
         .catch((err) => {
             console.err(err)
-        })
-        
-
+        })  
     }
 
     return(

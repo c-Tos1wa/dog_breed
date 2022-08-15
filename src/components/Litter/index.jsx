@@ -1,9 +1,36 @@
-import * as styled from './style'
+import { useState, useEffect } from 'react'
+import { api } from '../../api'
 
 import { Box, Card, CardMedia } from '@mui/material'
+import * as styled from './style'
 
 
 export function DogCard(){
+    const [photos, setPhotos] = useState([])
+    const [breed, setBreed] = useState('chihuahua')
+    const [loggedIn, setLoggedIn] = useState(false)
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("token")
+        console.log(token)
+
+        if(!token){
+            setLoggedIn(false)
+        }
+
+        const auth = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        api.get(`/list?breed=${breed}`, auth)
+            .then((res) => {
+                setLoggedIn(true)
+                setPhotos(res.data.list)
+            })
+    }, [loggedIn])
+
     return(
         <Box
             sx={styled.ListOrganized}
@@ -13,7 +40,7 @@ export function DogCard(){
             >
                 <CardMedia
                     component="img"
-                    image="http://s2.glbimg.com/wB2k5I1ty4iVdwzurRl40rcoSqo=/e.glbimg.com/og/ed/f/original/2017/07/20/beach-1790049_960_720.jpg"
+                    image={photos.src}
                     alt=""
                 >
                 </CardMedia>
