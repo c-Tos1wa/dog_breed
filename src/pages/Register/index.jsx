@@ -1,36 +1,35 @@
 import { useState } from 'react'
 
-import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 import * as Style from './style'
+import { api } from '../../api';
 
 
 export function SignUp(){
     let navigate = useNavigate()
-    const [email, setEmail] = useState('')
 
-    const handleChange = (e) => {
-        setEmail(e.target.value)
-    }
+    const [email, setEmail] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
         const registration = { email }
         setEmail('')
-        navigate('/lista-cachorros')
-        
+        navigate('/lista-cahorros')
+
         api.post('/register', registration)
-        .then((res) => {
-            const token = res.data.user.token
-            localStorage.setItem('token', token)
-        })
-        .catch((err) => {
-            console.log(err)
-        })  
+            .then((response) => {
+                const TOKEN = response.data.user.token
+                sessionStorage.setItem('token', TOKEN)
+            })
+            .catch(() => {})
+
     }
+
+    
+
+    
 
     return(
         <>
@@ -49,8 +48,10 @@ export function SignUp(){
                     label="Email"
                     variant="outlined"
                     placeholder='Escreva seu e-mail aqui'
-                    value={email}
-                    onChange={handleChange}
+                    value={ email }
+                    onChange={
+                        (e) => setEmail(e.target.value)
+                    }
                 />
 
                 <Button

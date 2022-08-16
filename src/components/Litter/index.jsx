@@ -1,35 +1,36 @@
 import { useState, useEffect } from 'react'
 import { api } from '../../api'
 
+import Dog from '../../assets/cute-dog.jpg'
 import { Box, Card, CardMedia } from '@mui/material'
 import * as styled from './style'
 
 
 export function DogCard(){
-    const [photos, setPhotos] = useState([])
-    const [breed, setBreed] = useState('chihuahua')
-    const [loggedIn, setLoggedIn] = useState(false)
+    // const [photos, setPhotos] = useState([])
+    // const [breed, setBreed] = useState('chihuahua')
+    // const [loggedIn, setLoggedIn] = useState(false)
 
-    useEffect(() => {
-        const token = localStorage.token
-        console.log(token)
+    // useEffect(() => {
+    //     const token = localStorage.token
+    //     console.log(token)
 
-        if(!token){
-            setLoggedIn(false)
-        }
+    //     if(!token){
+    //         setLoggedIn(false)
+    //     }
 
-        const auth = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
+    //     const auth = {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`
+    //         }
+    //     }
 
-        api.get('/list', auth)
-            .then((res) => {
-                setLoggedIn(true)
-                setPhotos(res.data.list)
-            })
-    }, [loggedIn])
+    //     api.get('/list', auth)
+    //         .then((res) => {
+    //             setLoggedIn(true)
+    //             setPhotos(res.data.list)
+    //         })
+    // }, [loggedIn])
 
     return(
         <Box
@@ -40,7 +41,7 @@ export function DogCard(){
             >
                 <CardMedia
                     component="img"
-                    image={photos.src}
+                    image={Dog}
                     alt="Fotos de cachorros"
                 >
                 </CardMedia>
