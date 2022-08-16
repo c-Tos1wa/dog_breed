@@ -25,7 +25,7 @@ export function SignUp(){
         api.post('/register', registration)
         .then((res) => {
             const token = res.data.user.token
-            sessionStorage.setItem('token', token)
+            localStorage.setItem('token', token)
         })
         .catch((err) => {
             console.log(err)

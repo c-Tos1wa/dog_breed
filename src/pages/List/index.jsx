@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { Typography } from '@mui/material'
+
 import { DogCard } from '../../components/Litter'
 
 export function Home(){
@@ -8,10 +10,12 @@ export function Home(){
     return(
         <>
         <DogCard />
-            {/* {
-                dogs.map((photos) => (
-                ))
-            } */}
+        <a href='/'>
+            <Typography
+                variant='subtitle'
+                marginLeft='0.5em'
+            >Voltar</Typography>
+            </a>
         </>
     )
 }

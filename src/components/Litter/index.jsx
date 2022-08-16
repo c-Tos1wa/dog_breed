@@ -11,7 +11,7 @@ export function DogCard(){
     const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
-        const token = sessionStorage.getItem("token")
+        const token = localStorage.token
         console.log(token)
 
         if(!token){
@@ -24,7 +24,7 @@ export function DogCard(){
             }
         }
 
-        api.get(`/list?breed=${breed}`, auth)
+        api.get('/list', auth)
             .then((res) => {
                 setLoggedIn(true)
                 setPhotos(res.data.list)
