@@ -20,7 +20,7 @@ export function SignUp(){
         
         const registration = { email }
         setEmail('')
-        navigate('/cachorros')
+        navigate('/lista-cachorros')
         
         api.post('/register', registration)
         .then((res) => {
@@ -28,7 +28,7 @@ export function SignUp(){
             sessionStorage.setItem('token', token)
         })
         .catch((err) => {
-            console.err(err)
+            console.log(err)
         })  
     }
 

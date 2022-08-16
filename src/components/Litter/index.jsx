@@ -41,7 +41,7 @@ export function DogCard(){
                 <CardMedia
                     component="img"
                     image={photos.src}
-                    alt=""
+                    alt="Fotos de cachorros"
                 >
                 </CardMedia>
 
